@@ -1,0 +1,48 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bowman1997}
+D.~A. Bowman, D.~Koller, and L.~F. Hodges.
+\newblock {Travel in Immersive Virtual Environments : An Evaluation of
+  Viewpoint Motion Control Techniques Georgia Institute of Technology}.
+\newblock {\em Proceedings of the 1997 Virtual Reality Annual International
+  Symposium}, pages 45--52, 1997.
+
+\bibitem{Bowman2001}
+D.~A. Bowman, E.~Kruijff, J.~J. LaViola, and I.~Poupyrev.
+\newblock {An Introduction to 3-D User Interface Design}.
+\newblock {\em Presence: Teleoperators and Virtual Environments},
+  10(1):96--108, 2001.
+
+\bibitem{Bowman1998}
+D.~A. Bowman, J.~Wineman, L.~F. Hodges, and D.~Allison.
+\newblock {Designing animal habitats within an immersive VE}.
+\newblock {\em IEEE Computer Graphics and Applications}, 18(5):9--13, 1998.
+
+\bibitem{Buxton1986}
+W.~Buxton, B.~Myers, W.~Buxton, and B.~Myers.
+\newblock {A study in two-handed input}.
+\newblock In {\em Proceedings of the SIGCHI conference on Human factors in
+  computing systems - CHI '86}, volume~17, pages 321--326, New York, New York,
+  USA, 1986. ACM Press.
+
+\bibitem{Darken1993}
+R.~P. Darken and J.~L. Sibert.
+\newblock {A toolset for navigation in virtual environments}.
+\newblock {\em Proceedings of the 6th annual ACM symposium on User interface
+  software and technology - UIST '93}, (January):157--165, 1993.
+
+\bibitem{Mine2014}
+M.~Mine, A.~Yoganandan, and D.~Coffey.
+\newblock {Making VR Work : Building a Real-World Immersive Modeling
+  Application in the Virtual World}.
+\newblock {\em {\ldots} of the 2nd ACM symposium on {\ldots}}, pages 80--89,
+  2014.
+
+\bibitem{Steck2000}
+S.~D. Steck and H.~A. Mallot.
+\newblock {The Role of Global and Local Landmarks in Virtual Environment
+  Navigation}.
+\newblock {\em Presence: Teleoperators and Virtual Environments}, 9(1):69--83,
+  feb 2000.
+
+\end{thebibliography}
