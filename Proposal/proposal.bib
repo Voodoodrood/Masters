@@ -105,3 +105,97 @@ title = {{Making VR Work : Building a Real-World Immersive Modeling Application 
 url = {http://dl.acm.org/citation.cfm?doid=2659766.2659780},
 year = {2014}
 }
+
+@inproceedings{Gain2015,
+abstract = {The challenge in terrain synthesis for virtual environments is to provide a combination of precise user control over landscape form, with interactive response and visually realistic results. We present a system that builds on parallel pixel-based texture synthesis to enable interactive creation of an output terrain from a database of heightfield exemplars. We also provide modelers with control over height and surrounding slope by means of constraint points and curves; a paint-by-numbers interface for specifying the local character of terrain; coherence controls that allow localization of changes to the synthesized terrain; and copy-paste functionality to directly transplant terrain regions. Together these contributions provide a level of realism that, based on user experiments, is indistinguishable from real source terrains; user control sufficient for precise placement of a variety of landforms, such as cliffs, ravines and mesas; and synthesis times of 165ms for a 10242 terrain grid.},
+author = {Gain, J. and Merry, B. and Marais, P.},
+booktitle = {Computer Graphics Forum},
+doi = {10.1111/cgf.12545},
+file = {:C$\backslash$:/Users/Tim/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Gain, Merry, Marais - 2015 - Parallel, Realistic and Controllable Terrain Synthesis.pdf:pdf},
+isbn = {01677055},
+issn = {14678659},
+month = {may},
+number = {2},
+pages = {105--116},
+title = {{Parallel, Realistic and Controllable Terrain Synthesis}},
+url = {http://doi.wiley.com/10.1111/cgf.12545},
+volume = {34},
+year = {2015}
+}
+
+@article{Tasse2014,
+abstract = {We present a new method for first person sketch-based editing of terrain models. As in usual artistic pictures, the input sketch depicts complex silhouettes with cusps and T-junctions, which typically correspond to non-planar curves in 3D. After analysing depth constraints in the sketch based on perceptual cues, our method best matches the sketched silhouettes with silhouettes or ridges of the input terrain. A specific deformation algorithm is then applied to the terrain, enabling it to exactly match the sketch from the given perspective view, while insuring that none of the user-defined silhouettes is hidden by another part of the terrain. As our results show, this method enables users to easily personalize an existing terrain, while preserving its plausibility and style.},
+author = {Tasse, Fp and Emilien, Arnaud and Cani, Marie-Paule},
+file = {:C$\backslash$:/Users/Tim/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Ponjou Tasse et al. - 2014 - First Person Sketch-based Terrain Editing.pdf:pdf},
+isbn = {9781482260038},
+issn = {07135424},
+journal = {Graphics Interface {\ldots}},
+keywords = {first person editing,sketch-based modelling,terrain},
+title = {{First Person Sketch-based Terrain Editing}},
+url = {http://hal.inria.fr/hal-00976689/},
+volume = {2014},
+year = {2014}
+}
+
+@article{Cruz2015,
+abstract = {In this paper , we present an intuitive and controllable patch - based technique for terrain synthesis . Our method is based on classical patch - based texture synthesis approaches . It generates a new terrain model by combining patches extracted from a given set of exemplars , providing a control performed by a low frequency guide , a categorization of exemplars , and a map for distributing these categories . Furthermore , we propose criteria to validate the input , some structures to accelerate the patch choice , and a metric based on the process , these structures , and some specificities of the data .},
+author = {Cruz, Leandro and Velho, Luiz and Galin, Eric and Peytavie, Adrien and Guerin, Eric},
+file = {:C$\backslash$:/Users/Tim/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Cruz et al. - Unknown - Patch - based Terrain Synthesis.pdf:pdf},
+journal = {GRAPP},
+keywords = {Data - driven Approach,Intuitive Control,Terrain Synthesis},
+pages = {189--194},
+title = {{Patch - based Terrain Synthesis}},
+year = {2015}
+}
+
+@article{Tasse2012,
+abstract = {Curvilinear features extracted from a 2D user-sketched feature map have been used successfully to constraint a patch-based texture synthesis of real landscapes. This map-based user interface does not give fine control over the height profile of the generated terrain.We propose a newtexture-based terrain synthesis framework controllable by a terrain sketching interface.We enhance the realism of the generated landscapes by using a novel patch merging method that reduces boundary artefacts caused by overlapping terrain patches. A more constrained synthesis process is used to produce landscapes that better match user requirements. The high computational cost of texture synthesis is reduced with a parallel implementation on graphics hardware. OurGPU-accelerated solution provides a significant speedup depending on the size of the example terrain. We show experimentally that our framework is more successful in generating realistic landscapes than current example-based terrain synthesis methods. We conclude that texture-based terrain synthesis combined with sketching provides an excellent solution to the user control and realism challenges of virtual landscape generation.},
+author = {Tasse, F. P. and Gain, J. and Marais, P.},
+doi = {10.1111/j.1467-8659.2012.03076.x},
+file = {:C$\backslash$:/Users/Tim/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Tasse, Gain, Marais - 2012 - Enhanced Texture-Based Terrain Synthesis on Graphics Hardware.pdf:pdf},
+issn = {01677055},
+journal = {Computer Graphics Forum},
+keywords = {GPU,patch merging,patch-based texture synthesis,seam removal,terrain generation,terrain sketching},
+month = {sep},
+number = {6},
+pages = {1959--1972},
+publisher = {Blackwell Publishing Ltd},
+title = {{Enhanced texture-based terrain synthesis on graphics hardware}},
+url = {http://doi.wiley.com/10.1111/j.1467-8659.2012.03076.x},
+volume = {31},
+year = {2012}
+}
+
+@article{Musgrave1989,
+abstract = {In standard fractal terrain models based on fractional Brownian motion the statistical character of the surface is, by design, the same everywhere. A new approach to the synthesis of fractal terrain height fields is presented which, in contrast to previous techniques, features locally independent control of the frequencies composing the surface, and thus local control of fractal dimension and other statistical characteristics. The new technique, termed noise synthesis, is intermediate in difficulty of implementation, between simple stochastic subdivision and Fourier filtering or generalized stochastic subdivision, and does not suffer the drawbacks of creases or periodicity. Varying the local crossover scale of fractal character or the fractal dimension with altitude or other functions yields more realistic first approximations to eroded landscapes. A simple physical erosion model is then suggested which simulates hydraulic and thermal erosion processes to create gloabl stream/valley networks and talus slopes. Finally, an efficient ray tracing algorithm for general height fields, of which most fractal terrains are a subset, is presented.},
+address = {New York, New York, USA},
+author = {Musgrave, F. K. and Kolb, C. E. and Mace, R. S.},
+doi = {10.1145/74334.74337},
+isbn = {0201504340},
+issn = {00978930},
+journal = {ACM SIGGRAPH Computer Graphics},
+number = {3},
+pages = {41--50},
+publisher = {ACM Press},
+title = {{The synthesis and rendering of eroded fractal terrains}},
+url = {http://portal.acm.org/citation.cfm?doid=74333.74337},
+volume = {23},
+year = {1989}
+}
+@inproceedings{Anh2007,
+abstract = {Visual simulation of natural erosion on terrains has always been a fascinating research topic in the field of computer graphics. While there are many algorithms already developed to improve the visual quality of terrain, the recent simulation methods revolve around physically-based hydraulic erosion because it can generate realistic natural-looking terrains. However, many of such algo- rithms were tested only on low resolution terrains. When simu- lated on a higher resolution terrain, most of the current algorithms become computationally expensive. This is why in many applica- tions today, terrains are generated off-line and loaded during the application runtime. This method restricts the number of terrains which can be stored if there is a limitation on storage capacity.},
+address = {New York, New York, USA},
+author = {Anh, Nguyen Hoang and Sourin, Alexei and Aswani, Parimal},
+booktitle = {Proceedings of the 5th international conference on Computer graphics and interactive techniques in Australia and Southeast Asia - GRAPHITE '07},
+doi = {10.1145/1321261.1321308},
+file = {:C$\backslash$:/Users/Tim/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Anh, Sourin, Aswani - 2007 - Physically based hydraulic erosion simulation on graphics processing unit.pdf:pdf},
+isbn = {9781595939128},
+keywords = {hydraulic erosion,natural phenomena,physically based modeling,terrain,visual simulation},
+pages = {257},
+publisher = {ACM Press},
+title = {{Physically based hydraulic erosion simulation on graphics processing unit}},
+url = {http://portal.acm.org/citation.cfm?doid=1321261.1321308 http://dl.acm.org/citation.cfm?id=1321261.1321308},
+year = {2007}
+}
+
+
