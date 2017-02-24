@@ -1,0 +1,62 @@
+\documentclass{sig-alternate-05-2015}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{subfiles}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+
+\makeatletter
+\def\@copyrightspace{\relax}
+\makeatother
+
+\begin{document}
+\title{A user interface for landscape modelling in a virtual environment using a head mounted display}
+
+\numberofauthors{1}
+\author{
+\alignauthor
+Timothy Gwynn\\
+       \affaddr{GWYTIM001}\\
+       \affaddr{University of Cape Town}
+}
+\maketitle
+\begin{CCSXML}
+
+\end{CCSXML}
+
+
+
+\printccsdesc
+\keywords{Virtual Environments, Terrain Synthesis, User Testing}
+\begin{abstract}
+	
+\end{abstract}
+\section{Introduction}
+\section{Background Reading}
+\subsection{Terrain Synthesis}
+\subsection{Navigation in Virtual Environments}
+User navigation and viewpoint motion control techniques in virtual environments is the subject of a number of studies. Bowman et al. have presented a categorization of such techniques in their 1997 paper\cite{Bowman1997}. This allows us to categorize a number of techniques into two broad categories: Gaze directed navigation and tool directed navigation. Gaze directed navigation refers to instances where the user's navigation is controlled via a tracked HMD while tool directed navigation involves the user controlling their direction of movement through a hand held tool. Bowman et al. then performed a series of experiments where they found that tool directed navigation was faster than gaze directed navigation for navigating relative to objects and equal for navigating in absolute space.
+
+Other areas of research in Navigation in Virtual Environments include investigation into the effectiveness of various types of landmarks. These included a study into whether users orientate themselves via local or global landmarks\cite{Steck2000}. Steck et al. found that although users would alternate between using local and global landmarks in certain situations they tended not to combine them. They suggest that users will tend to use the most visually distinct land marks and will prefer to use landmarks that are not occluded. This implies that navigation interface design should provide a variety of landmarks, both global and local, that allow the user to always have a distinctive point of reference. It also suggests that global landmarks that will not be occluded by local geometry should be used. A good example of this would be a static sun-like object in the sky.
+
+Darken et al. compared a variety of tools for navigation in virtual environments including landmarks, breadcrumb markers and map views amongst others\cite{Darken1993}. They associated their techniques with natural human and avian  navigational behaviours. While they did not evaluate the effectiveness of the different techniques they did detail the common behaviour of the test subjects for each technique. By observing which techniques lead to simple or complex behaviour we can surmise which techniques are effective from at least an ease of use perspective. They found that the map view in particular allowed for very simple behaviour although they suggested that this was linked to the navigation space being a 2D plane. Users also were able to follow a simple sequence of actions in a scenario where they were able to fly vertically which let them observe the navigational space from above at a distant perspective. They also found that while landmarks were effective for distinguishing certain areas they provided little directional information. When they added a synthetic sun in the test case with landmarks which provided orientation information user performance increased significantly.
+
+Darken et al.'s experiments reinforce the concept of a combination of local and global landmarks being useful for navigation. Additionally, the ease of use of both the map and the flying technique suggest that allowing the user to move in 3 dimensions and providing a 3D map will aid navigation considerably. 
+\subsection{Interface design for HMDs}
+In addition to research into navigation in virtual environments there has been substantial research into how to effectively interact with them. These interactions can be divided into two types, direct interaction with the environment and interaction with the interface.
+
+ Interaction with environment involves the user making changes to the virtual environment through selection and manipulation of objects. To do this users should, at minimum, be able to either select or position or rotate objects\cite{Bowman2001}. Research in this area addresses both the wide range of hardware devices created for interacting the VEs as well as the related software solutions. Common tools include a motion tracked glove [citation here] and pen or wand controllers. With regards to the software solutions a number of 3D widgets haven been implemented and tested [examples and citations here].
+ 
+ There are a number of interesting general results from these experiments. It is widely agreed that humans are better able to judge relative position of their hands than absolute position \cite{Bowman1998, Buxton1986}. Therefore interfaces should be designed for bi-manual interaction and motion should be tracked with the dominant hand relative to the non-dominant hand. Studies also suggest that degrees of freedom (DOF) should be restricted as much as possible to simplify interaction with the VE.
+ 
+ Interaction with the interface refers to the user modifying the state of the system or the mode of interaction\cite{Bowman2001}. Typical examples include menu interaction and tool selection. These tasks, which are often 2D or 1D are ill suited to 3D environments\cite{Bowman2001}. Mine et al. created custom 3D controllers using a combination of touch screens and physical buttons. \cite{Mine2014} These were well suited for menu selections as the 2D touch surface mapped directly to 2D interface elements. From this we can surmise that finding an alternative to motion tracking for interface interaction is advisable.
+\subsection{Usability testing}
+\section{Related Work}
+\subsection{Comparison of Desktop applications to Virtual environment}
+\subsection{Designing for Virtual Environments in Virtual Environments}
+
+\bibliographystyle{abbrv}
+\bibliography{proposal}
+\end{document}
