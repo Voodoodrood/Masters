@@ -196,14 +196,14 @@ Time to complete the modelling tasks will be compared using statistical measures
 
 Accuracy will be somewhat more complex to measure. It would be possible to simply compare the volumes of the example terrain to the modelled terrain and extract the difference as a percentage of the total original volume. However, during an actual design process designers are likely to have a certain concept scene in mind and will be more concerned with producing that as accurately as possible rather than filling a specific volume. It therefore seems sensible to use a board with members familiar with terrain modelling or design which will judge the similarity of the modelled terrain to the given example. This will allow for subjective feedback that more closely resembles the way in which designers will try to actualize a mental image in virtual reality.
 
-We will use standard usability questionnaires with established measures in order to compare the usability of the different systems. [insert research into usability testing here]
+We will use the Post-Study System Usability Questionnaire (PSSUQ) which is a 19-item, 7 point scale questionnaire\cite{Lewis1995} to measure the usability of our system. The PSSUQ will allow us to collect results on overall satisfaction, system usefulness, information quality and interface quality.
 
 \hl{[To add: What additional data will be collected/ analysed, consider flow and common VR issues from ED]}
 
 \section{Project plan}
 \subsection{Requirements}
 \subsubsection{Hardware}
-We will need to provide users with a VE experience that can be used in a typical environment of 3D content designers. As CAVE systems have both a high cost and require a large space it is impractical to use these as an everyday tool particularly if multiple designers need to be working at once. HMDs provide a much more compact solution allowing users to work while sitting in a typical workspace area with a desk and chair. We therefore will be using a HMD device with two 6-DOF controllers for the VE system. Due to the availability, recent popularity and the integration with existing developer tools of the Oculus Rift headset we will be using this as our HMD device. Additionally Oculus has released 6-DOF controllers known as Oculus touch controllers that are designed to be used with their headset\cite{Oculus}. We will therefore be using a pair of these controllers. The Oculus HMD device requires a workstation withh sufficient capabilities. According to Oculus the minimum requirements for their device are\cite{Oculus}:
+We will need to provide users with a VE experience that can be used in a typical environment of 3D content designers. As CAVE systems have both a high cost and require a large space it is impractical to use these as an everyday tool particularly if multiple designers need to be working at once. HMDs provide a much more compact solution allowing users to work while sitting in a typical workspace area with a desk and chair. We therefore will be using a HMD device with two 6-DOF controllers for the VE system. Due to the availability, recent popularity and the integration with existing developer tools of the Oculus Rift headset we will be using this as our HMD device. Additionally Oculus has released 6-DOF controllers known as Oculus touch controllers that are designed to be used with their headset\cite{Oculus}. We will therefore be using a pair of these controllers. The Oculus HMD device requires a workstation with sufficient capabilities. According to Oculus the minimum requirements for their device are\cite{Oculus}:
 \begin{itemize}
 \item Video Card:  NVIDIA GTX 970
 \item CPU: Intel i5-4590
@@ -213,11 +213,10 @@ We will need to provide users with a VE experience that can be used in a typical
 \item OS: Windows 10 64 bit
 \end{itemize}
 \subsubsection{Software}
-The system will rely on the software created for the terrain synthesis paper by Gain et el.\cite{Gain2015}. This will provide the terrain synthesis functionality and will also be used as the desktop system to which the VE system is compared.
+The system will rely on the software created for the terrain synthesis paper by Gain et el.\cite{Gain2015}. This will provide the terrain synthesis functionality and will also be used as the desktop system to which the VE system is compared. To do this we can compile a significant portion of the existing software to .dll files which can then be accessed through C\# in Unity. 
 
-The VE interface will be built using Unity3D. Unity3D has built in support for the Oculus Rift as well as the Oculus touch controllers. Additionally the researcher has prior experience with the Unity3D system. This will reduce the time taken to create the VE system as there will be no need for the researcher to familiarize himself with a new platform.
+The VE interface will be built using Unity3D for Linux. Unity3D has built in support for the Oculus Rift as well as the Oculus touch controllers. Additionally the researcher has prior experience with the Unity3D system. This will reduce the time taken to create the VE system as there will be no need for the researcher to familiarize himself with a new platform.
 
-\hl{[To add: find a solid way to show that it is in fact possible to have Unity and UTS systems communicate]}
 \subsubsection{People}
 A small group of individuals will be needed to perform pilot tests to guide the creation of the VE interface. These individuals will likely be experienced with system design and computer interfaces and may be familiar with HMD devices.
 
@@ -231,7 +230,7 @@ Can't get UTS to run in real time on Oculus\\
 Unable to implement certain required functionalities for the VE interface\\
 Unavailability of test subjects
 \subsection{Timeline}
-[Make a gant chart]
+\hl{[Make a gant chart]}
 \section{Research outcomes}
 \subsection{Artefacts produced}
 During the course of this research a VE interface system designed for the Oculus rift and Oculus touch controllers will be produced. This will interact with the terrain synthesis functionality of the existing UTS desktop system\cite{Gain2015}. The resulting application will provide an immersive user experience that allows for terrain modelling and synthesis in a VE.
