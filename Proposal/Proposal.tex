@@ -1,6 +1,6 @@
 \documentclass{sig-alternate-05-2015}
 \usepackage{float}
-\usepackage{enumitem}
+%\usepackage{enumitem}
 \usepackage{subfiles}
 \usepackage[english]{babel}
 \usepackage{graphicx}
@@ -92,20 +92,16 @@ In relation to where interface elements are placed in the virtual space we also 
  
  
 \subsubsection{Environment interaction in VEs}
- Interaction with environment involves the user making changes to the virtual world through selection and manipulation of objects. To do this users should, at minimum, be able to either select or position or rotate objects\cite{Bowman2001}. Research in this area addresses both the wide range of hardware devices created for interacting the VEs as well as the related software solutions. Common tools include a motion tracked glove \cite{Zimmerman1986} and pen or wand controllers\cite{Schultheis2012}. 
+ Interaction with environment involves the user making changes to the virtual world through selection and manipulation of objects. To do this users should, at minimum, be able to either select or position or rotate objects\cite{Bowman2001}. Research in this area addresses both the wide range of hardware devices created for interacting the VEs as well as the related software solutions. Common tools include a motion tracked glove \cite{Zimmerman1986}, spaceballs\cite{Hand1997}, and pen or wand controllers\cite{Schultheis2012}. As opposed to WIMP interfaces interaction with VEs is often based on direct manipulation where the user 'grabs' an object and then manipulates it as one would manipulate a malleable physical body.
+  
  There have also been a number of investigations into the advantages of two-handed-interfaces(THI) over other interaction methods. It is widely agreed that humans are better able to judge relative position of their hands than absolute position.\cite{Bowman1998, Buxton1986} Additionally users have a preference for THI\cite{Buxton1986} and perform certain basic manipulation tasks such as rotation and translation more efficiently when using two hands\cite{Schultheis2012,Balakrishnan1999}. Therefore interfaces should be designed for bi-manual interaction and motion should be tracked with the dominant hand(DH) relative to the non-dominant hand (NDH)\cite{Hinckley1994}.
  
  Another area of interest in Environment interaction is how to interaction with objects far away from the user. This is commonly referred to as action at a distance (AAAD). Techniques to address this include the go-go hand technique\cite{Poupyrev1996}, where the hand is tracked and then non-linearly mapped into the VE and a number of ray-casting techniques discussed by Bowman et al.\cite{Bowman2001}. These methods roughly correspond to the function of a cursor in a 2D environment. Hand et al. suggest that although cursors are a necessary metaphor in a 2D environment they do not correspond well enough with natural gestures for use in VEs\cite{Hand1997}.
  
- Although there are a number of ways to perform AAAD users also need depth cues to manipulate or select objects with precision.\cite{Schultheis2012} Some suggested methods for this include representing the user's hand as a transparent outline in the VE\cite{Hinckley1994} or drawing a line between the user's hands in the VE.\cite{Schultheis2012}
+ Although there are a number of ways to perform AAAD users also need depth cues to manipulate or select objects with precision.\cite{Schultheis2012} Some suggested methods for this include representing the user's hand as a transparent outline in the VE\cite{Hinckley1994}, drawing a line between the user's hands in the VE\cite{Schultheis2012} or creating a plane of action\cite{Mine2014} on which the user acts.
  
  
  Studies also suggest that degrees of freedom (DOF) should be restricted as much as possible to simplify interaction with the VE.\cite{Bowman2001}
- 
- 
-  With regards to the software solutions a number of 3D widgets haven been implemented and tested \hl{[examples and citations here].}
- 
-
 
 \subsection{Comparison of Desktop applications to Virtual environment}
 There have been a number of studies comparing user performance in VEs and desktop environments. In studies where users had to perform simple tasks expert users completed the tasks up to 8 times faster in the VE than on a desktop.\cite{Schultheis2012} However, in more complex applications, especially where indoor navigation was required or training time was low, users tended to perform better on desktop systems\cite{SousaSantos2009}. However, even in systems where users were novices they felt that the VE interfaces were more intuitive and easier to use\cite{Toma2012}.
