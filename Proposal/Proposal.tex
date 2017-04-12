@@ -58,7 +58,7 @@ Virtual landscapes are an important component in representing natural environmen
 
 %Tasse et al.'s paper on first person terrain editing presents a sketch based technique which allows users to  edit terrain from a single point of view\cite{Tasse2014}. Although there is focus on editing the terrain from a FPV in the application, the users requested the ability to have a separate viewpoint from which to see their changes made in the FPV. In the paper itself we are regularly given a top view to display how the changes affected the terrain as a whole. This reinforces the need to give users both an immersive FPV and a remote top-view.
 \subsection{Interface design for modelling in large-scale Virtual environments}
-\hl{Somewhere need to talk about camera control, not sure where cite ware and bowman}
+%\hl{Somewhere need to talk about camera control, not sure where cite ware and bowman}
 \subsubsection{Navigation in Virtual Environments}
 A common problem for users in VEs is becoming disorientated and lost within the VE\cite{Darken1993}. This may be due to a number of issues such as the user being unfamiliar with the environment or the interface through which the user views the environment not providing sufficient location and orientation information. Below there are some examples from research that aims to solve the problem of effective navigation and travel in VEs.
 
@@ -70,8 +70,7 @@ Vinson et al. performed further research into the design of landmarks for VEs.\c
 
 Darken et al. compared a variety of tools for navigation in VEs including landmarks, breadcrumb markers and maps, amongst others\cite{Darken1993}. They associated their techniques with natural human and avian  navigational behaviours.  They found that the map view in particular allowed for very simple behaviour although they suggested that this was linked to the navigation space being a 2D plane. Users also were able to follow a simple sequence of actions where they could fly vertically, which let them observe the navigational space from above at a distant perspective. They also found that while landmarks were effective for distinguishing certain areas they provided little directional information. When they added a synthetic sun in the test case with landmarks that provided orientation information, user performance increased significantly. %While they did not evaluate the effectiveness of the different techniques they did detail the common behaviour of the test subjects for each technique. By observing which techniques lead to simple or complex behaviour we can surmise which techniques are effective from an ease of use perspective.
 
-Darken et al.'s experiments reinforce the concept of a combination of local and global landmarks being useful for navigation\cite{Darken1993}. Additionally, the ease of use of both the map and the flying technique suggest that allowing the user to move in 3 dimensions and providing a 3D map, allowing the user to determine scale based on their height or distance from the terrain, will aid navigation considerably.
-\hl{Need to justify 3D map better} 
+Darken et al.'s experiments reinforce the concept of a combination of local and global landmarks being useful for navigation\cite{Darken1993}. Additionally, the ease of use of both the map and the flying technique suggest that allowing the user to move in 3 dimensions and providing a map will aid navigation considerably. We suggest that in a 3D environment where 3D movement is possible a 3D map is better suited to aiding navigation. This will allow the user to read their height directly from the map and possibly aid the user in determining the scale of objects.
 
 Although having effective navigation techniques is important they are useless without some method of travel. Bowman et al. have created a list of aims for effective travel techniques.\cite{Bowman1997} These include, speed, accuracy, spatial awareness, ease of learning, ease of use, information gathering and presence. We suggest that user comfort should also be taken into account especially when designing a VE interface for 6-DOF controllers.
 
@@ -108,9 +107,9 @@ In relation to where interface elements are placed in the virtual space we also 
 \subsection{Comparison of Desktop applications to Virtual environments}
 There have been a number of studies comparing user performance in VEs and desktop environments. In studies where users had to perform simple tasks, expert users completed the tasks up to 8 times faster in the VE than on a desktop.\cite{Schultheis2012} However, in more complex applications, especially where indoor navigation was required or training time was low, users tended to perform better on desktop systems\cite{SousaSantos2009}. However, even in systems where users were novices they felt that the VE interfaces were more intuitive and easier to use\cite{Toma2012}.
 
- Scali et al. performed an experiment comparing a traditional WIMP interface to a number of VE set-ups with 6-DOF controllers that varied stereo-vision, haptic feedback and a snapping tool\cite{Scali2003}. They found that the VE systems outperformed the WIMP interfaces with regards to time for task completion, perceived workload and usability. Additionally they found that although haptics and stereo vision did not significantly affect task completion times, haptics had a significant effect on perceived workload and usability.
+ Scali et al. performed an experiment comparing a traditional WIMP interface to a number of VE set-ups with 6-DOF controllers that varied stereo-vision, haptic feedback and a snapping tool\cite{Scali2003}. They gave users a series of tasks that involved translating, rotating and scaling objects to fit onto pre-defined surfaces. They found that the VE systems outperformed the WIMP interfaces with regards to time for task completion, perceived workload and usability. Additionally they found that although haptics and stereo vision did not significantly affect task completion times, haptics had a significant effect on perceived workload and usability.
  
- \hl{To add: go into more detail on each experiment, find some more}
+ %\hl{To add: go into more detail on each experiment, find some more}
 \subsection{Designing for Virtual Environments in Virtual Environments}
 There are a variety of systems for modelling 3D objects and environments in VEs. These systems use a variety of devices and techniques to overcome some of the common problems with VE design, such as menu interaction.
 
@@ -152,16 +151,12 @@ Usability refers to how easy a system is to use for its intended purpose. This c
 %	\item [H$_{C1}$] The VE system has higher usability than the desktop system.
 	%\item [H$_{C2}$] The VE system has lower usability than the desktop system.
 %\end{description}
-\subsection{User Expression}
-This refers to the ability of a user to express his or her mental image in the virtual medium. We feel that the immersive aspect of the VE system coupled with the ability to switch to a FPV will enable users to create terrains express their concepts more faithfully. This is somewhat related to accuracy and usability but is perhaps a more subjective measure than either of these. Our research question regarding user expression is: \\
-\textbf{Do users feel more able to express their concept using the VE system or the desktop system?}\\
-\begin{description}
-	\item [H$_{C0}$] There is no difference in user expression between the VE system or the desktop system.
-	\item [H$_{C1}$] Users feel they can express their concept better using the VE system.
-	\item [H$_{C2}$] Users feel they can express their concept better using the desktop system.
+%\subsection{User Expression}
+%This refers to the ability of a user to express his or her mental image in the virtual medium. We feel that the immersive aspect of the VE system coupled with the ability to switch to a FPV will enable users to create terrains express their concepts more faithfully. This is somewhat related to accuracy and usability but is perhaps a more subjective measure than either of these. Our research question regarding user expression is: \\
+%\textbf{Do users feel more able to express their concept using the VE system or the desktop system?}\\
 	
-\hl{[note: this is somewhat a wish list aspect of the research will probably need to be dropped due to being rather vague]}
-\end{description}
+%\hl{[note: this is somewhat a wish list aspect of the research will probably need to be dropped due to being rather vague]}
+%\end{description}
 \section{Method}
 In order to establish answers to the research questions above we will implement a VE application based on Gain et al.'s terrain synthesis application\cite{Gain2015}. This application will use the same terrain synthesis methods but will incorporate a new interface that has been re-designed for use in a VE. We will then be able to compare how users perform with the existing desktop system against performance using the VE system.
 \subsection{System Design}
@@ -181,7 +176,13 @@ We will also need to implement user navigation and camera control tools for expl
 
 
 \subsection{Experimental design}
-The experiment will be a single blind, between-groups design. Users will not know the other condition but will know what is being measured (speed, accuracy etc.). We will need two groups of users to perform the experiment. The control group will use the existing desktop system while the experimental group will use the VE system. The tasks each group perform will be exactly the same. Because of this a within-groups experimental design is not representative as a scenario where users would create the exact same terrain multiple times is unrealistic. Participants will be selected via convenience sampling. Users are unlikely to have had VE experience. However, this is should not affect results due to the training session that all users will partake in. Computer science students are likely to make up the majority of these users due to them being more easily accessible to the researcher and more likely to be interested in this area of research. As such most users will have experience with traditional WIMP interfaces. Additionally, it is likely that a number of users will have experience using 3D modelling tools on desktop systems. We will need to balance the groups for experience with 3D modelling related tools as well as experience with 3D applications in general.
+The experiment will be a single blind, between-groups design. Users will not know the other condition but will know what is being measured (speed, accuracy etc.). We will need two groups of users to perform the experiment. The control group will use the existing desktop system while the experimental group will use the VE system.
+
+The tasks each group perform will be exactly the same. Because of this a within-groups experimental design is not representative as a scenario where users would create the exact same terrain multiple times is unrealistic.
+
+Participants will be selected via convenience sampling. They are unlikely to have had significant VE experience due to the limited availability of VE devices in South Africa. However, this is should not affect results as the training session will provide an opportunity for all users to familiarize themselves with the VE system. Computer science students are likely to make up the majority of these users as they are more easily accessible to the researcher and more likely to be interested in this area of research. As such most users will have experience with traditional WIMP interfaces. Additionally, it is likely that a number of users will have experience using 3D modelling tools on desktop systems. We will need to balance the groups for experience with 3D modelling related tools as well as experience with 3D applications in general. 
+
+We will also need to seek ethical clearance from the university to ensure that our experiment follows the ethical guidelines set out by the institution.
 
 Each group will attend two sessions. During the first session both groups will perform a series of training exercises. This is because  previous research has shown that training has a significant effect on user performance in VEs\cite{Schultheis2012}. During this session users will be able to familiarise themselves with the system. This will also compensate, somewhat, for the difference in experience among users. The second session will occur a few days later. This will prevent the effectiveness of the training sessions from fading significantly. The two sessions will not occur immediately after one another to prevent fatigue affecting the results.
 
@@ -189,10 +190,8 @@ During the second session each group will be asked to perform the same terrain m
 
 Our independent variable will be the system used (Desktop or VE) and our dependent variables will be speed, accuracy and user satisfaction/ usability.
 
-\hl{[To Add: Ethics]}
 \subsection{Data collection}
 During the experiment we will have a telemetry system running in the background that will provide detailed information on user inputs and actions. We will also be recording the time it takes users to complete each modelling task. After all tasks have been completed we will then collect usability feedback via questionnaire.
-\hl{[To add: consider think out loud feedback]}
 \subsection{Data analysis}
 Time to complete the modelling tasks will be compared using statistical measures.
 
@@ -200,7 +199,7 @@ Accuracy is somewhat more difficult to measure. It is possible to simply compare
 
 We will use the Post-Study System Usability Questionnaire (PSSUQ) which is a 19-item, 7 point scale questionnaire\cite{Lewis1995} to measure the usability of our system. The PSSUQ will allow us to collect results on overall satisfaction, system usefulness, information quality and interface quality.
 
-\hl{[To add: What additional data will be collected/ analysed, consider flow and common VR issues from ED]}
+We will use the short flow state scale (SFSS) questionnaire\cite{jackson2009flow} to determine whether there was a difference in the flow experience between the two systems. We will also include a short questionnaire to collect subjective data on user experience issues such as fatigue, motion sickness and comfort.
 
 \section{Project plan}
 \subsection{Requirements}
@@ -218,13 +217,50 @@ A significantly larger group will be needed to carry out the final experiment. T
 
 Finally, we will need a small group of individuals familiar with terrain design in order to analyse the accuracy of the terrain models created during the experiment. 
 \subsection{Risks}
-\hl{[Create Risk table]}\\ Principle risks are:\\
-Can't get unity/UTS to communicate\\
-Can't get UTS to run in real time on Oculus\\
-Unable to implement certain required functionalities for the VE interface\\
-Unavailability of test subjects
+See Table 1.
+
+\begin{table*}[t]
+	\centering
+	\begin{tabular}{m{4cm} |m{1.75cm} |m{1.5cm} |m{3cm} |m{3cm} |m{3cm} }
+		Risks and effects & Impact & Likelihood & Monitoring & Mitigation & Management \\ \hline
+		Unable to get sufficient test subjects&
+		High&
+		8&
+		Use sign up sheets&
+		Attempt to get an excess of test subjects, provide incentives for participation&
+		Looser specifications for test subjects needing to have 3D modelling experience\\ \hline
+		Unable to get Unity and the existing UTS software to communicate. Requires using alternative software to create the interface & High & 6 & Weekly checks to ensure development is proceeding as scheduled. & Prioritize getting this to work as early as possible. & Use alternative software such as Unreal Engine or OpenGL to create the interface\\ \hline
+		Unable to get the UTS software to run in realtime on the Oculus Rift. &
+		Medium&
+		7&
+		Test with small terrain areas and build up to full 1024X1024 size&
+		Allow for terrain area to be modified&
+		Modify the system to use smaller areas for terrain synthesis\\ \hline
+		Scope too large for a masters project&
+		Medium&
+		4&
+		Ensure time-line is realistic and project is progressing on schedule&
+		Break-down tasks and implement basic functionality before proceeding with an iterative design process&
+		Reduce the level of functionality of the VE and desktop systems
+	\end{tabular}
+	\caption{Risk Table}
+\end{table*}
 \subsection{Timeline}
-\hl{[Make a gant chart]}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{m{2cm} |m{4cm}}
+		Date & Milestone\\ \hline
+		01/06/2017 & Literature review, Introduction and Background complete\\
+		01/08/2017 & First working version of software complete\\
+		01/11/2017 & Iterative design and pilot tests complete \\
+		01/03/2018 & Experiments Complete\\
+		01/04/2018 & Results and Analysis Complete\\
+		01/06/2018 & Draft hand-in\\
+		01/07/2018 & Final hand-in		
+	\end{tabular}
+\caption{Milestones}
+\end{table}
+%\hl{[Make a gant chart]}
 \section{Research outcomes}
 \subsection{Artefacts produced}
 During the course of this research a VE interface system designed for the Oculus rift and Oculus touch controllers will be developed. This will interact with the terrain synthesis functionality of the existing UTS desktop system\cite{Gain2015}. The resulting application will provide an immersive user experience that allows for terrain modelling in a VE.
@@ -237,6 +273,7 @@ Should this research show that designing VE content in VEs is viable and even ad
 \subsection{Further research}
 As stated above one of the most exciting possibilities for research in this area lies in supporting multiple users, either locally or remotely. By giving each user a virtual avatar and the ability to naturally modify the model displayed we can create an environment that is conducive to fast, collaborative prototyping and allows for interactive presentations.
 More immediately, however, further research can be done into effective ways to interact with the environment. This project, for environment interaction at least, mostly transfers the existing tools from the desktop application and makes them available in a VE. The much greater variety of interaction techniques offered by 6-DOF devices may allow for radically different interaction techniques.
+\newpage
 \bibliographystyle{abbrv}
 \bibliography{proposal}
 \end{document}
