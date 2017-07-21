@@ -61,6 +61,25 @@ When the paint tool is selected this menu will be available to the user to selec
 \begin{description}
 	\item[Type /[x/]] Selects the terrain type the user will paint onto the terrain using the paint tool
 	\item [Back] Exits the paint tool and switches to the select tool.
+\end{description}
+\section{Paper Prototype}
+\subsection{Design}
+The paper prototype allowed the user to interact with all UI elements that were planned to be included in the VE interface. It also included a number of user instructions to guide first time uses through the program. Although the interface elements would react to user input it was not feasible to have the terrain model itself to react. Thus users were required to imagine how the terrain would change based on verbal feedback.
+
+The prototype was constructed using a number of parts to represent various interface elements. The displayed terrain itself was represented by a flat sheet of paper on a table surface. This allowed UI elements to be placed onto the terrain surface in approximation to the functionality of the VE. Users were asked to keep in mind that the terrain image was simply a representation of the VR display. A number of UI elements were represented by small cardboard tokens which could be placed on the terrain or "view area". Two ring menus were included, one being the main menu which users could select tools with and the other being \hl{a terrain type menu which users could use to select a type of terrain to paint onto the terrain}. There were also landmark and teleport target markers that the user could place onto the terrain. 
+A small cardboard hand was used to help users keep track of their hand within the VE during menu interaction. However, this was not present during other interactions. This was identified as a weakness in the prototype after evaluations had taken place. Within the VE the user would have constantly visible hand avatars which help them track their hand positions and orientations. Since this was lacking in the prototype users would often reset their hands to a rest position without considering the effect this would have on their current interaction.
+When interacting with the terrain users were asked to point with their index finger to represent the functionality of ray-casting, this closely approximate how the ray-casting feature of the interface will work. When using the paint tool users were shown outlines of the area they would paint on the terrain by a hollow paper ring placed on top of the terrain.
+
+Point and line constraints on the terrain were simulated using blue putty. This added a 3 dimensional aspect to the prototype while allowing users to create an arbitrary number of point constraints and any length or shape of line constraints. Additionally, the interactive point widget was represented by a ball of putty with 3 wooden arms which could be manipulated by the user to edit the properties of the constraint. This closely approximated the widgets in the desktop application pictured below.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{WedgeMenu}
+	\caption{An example of a wedge menu used in the popular game CS: GO}
+\end{figure}
+
+\subsection{Evaluation}
+\subsection{Changes to design}
 \bibliographystyle{abbrv}
 \bibliography{proposal}
 \end{document}
