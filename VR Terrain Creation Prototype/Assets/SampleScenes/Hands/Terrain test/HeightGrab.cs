@@ -17,7 +17,7 @@ namespace OVRTouchSample
         override public void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
         {
             base.GrabEnd(linearVelocity, angularVelocity);
-            inputty.changeTerrain(this.GetComponent<Collider>(), 0);            
+            //inputty.changeTerrain(this.GetComponent<Collider>(), 0);            
         }
 
         void Awake()

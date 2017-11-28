@@ -222,6 +222,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CircularMenu.cs" />
+    <Compile Include="Assets\HillWidget.cs" />
     <Compile Include="Assets\OVR\Scripts\Composition\OVRCameraComposition.cs" />
     <Compile Include="Assets\OVR\Scripts\Composition\OVRComposition.cs" />
     <Compile Include="Assets\OVR\Scripts\Composition\OVRCompositionUtil.cs" />
@@ -313,6 +315,15 @@
     <Compile Include="Assets\OVRInspector\Scripts\UIUtils\OVRGazeScroller.cs" />
     <Compile Include="Assets\OVRInspector\Scripts\UIUtils\OVRProgressIndicator.cs" />
     <Compile Include="Assets\PainterGrab.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\ColorGrabbable.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\DistanceGrabbable.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\DistanceGrabber.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\DistanceGrabDemo.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\GrabbableCrosshair.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\GrabManager.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\Hand.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\HandPose.cs" />
+    <Compile Include="Assets\SampleScenes\Hands\Scripts\TouchController.cs" />
     <Compile Include="Assets\SampleScenes\Hands\Terrain test\HeightGrab.cs" />
     <Compile Include="Assets\SampleScenes\Hands\Terrain test\InputHandler.cs" />
     <Compile Include="Assets\SampleScenes\Hands\Terrain test\ReverseGrab.cs" />
@@ -352,6 +363,9 @@
     <None Include="Assets\OvrAvatar\Content\Materials\AvatarSurfaceShaderSelfOccluding.shader" />
     <None Include="Assets\Parse\Parse.Unity.xml" />
     <None Include="Assets\SampleScenes\LICENSE.txt" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
+    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\third_party_notices.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

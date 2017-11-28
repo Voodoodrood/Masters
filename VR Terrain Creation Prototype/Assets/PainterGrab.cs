@@ -21,6 +21,10 @@ namespace OVRTouchSample
         RaycastHit hit;
         public TerrainData terrData;
         public Terrain terr;
+        public CircularMenu myColorMenu;
+        public GameObject projector;
+        private float aoe, height;
+ 
 
         public void Update()
         {
@@ -29,12 +33,25 @@ namespace OVRTouchSample
             {
                 DrawLaser(this.transform.position, this.transform.position + this.transform.forward * -50, Color.red);
                 Physics.Raycast(this.transform.position, -this.transform.forward, out hit);
+                DrawPreview(hit.point);
             }
 
             if (inHand && OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
             {
-                UpdateTerrainTexture(terrData, 0, 1, hit.point.x, hit.point.z);
+                UpdateTerrainTexture(terrData, hit.point.x, hit.point.z);
             }
+            Vector2 stick2Pos = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+            if (inHand && (stick2Pos.y>0.5f))
+            {
+                aoe = Mathf.Min(aoe+1,150);
+                height = Mathf.Min(height + 0.15f, 22.5f);
+            }
+            else if (inHand && (stick2Pos.y < -0.5f))
+            {
+                aoe = Mathf.Max(aoe - 1, 10);
+                height = Mathf.Max(height - 0.15f, 1.5f);
+            }
+            Debug.Log("AOE: " + aoe + " height: "+height);
         }
 
         void DrawLaser(Vector3 start, Vector3 end, Color color, float duration = 0.02f)
@@ -53,26 +70,37 @@ namespace OVRTouchSample
             GameObject.Destroy(laserLine, duration);
         }
 
-        private void UpdateTerrainTexture(TerrainData terrainData, int textureNumberFrom, int textureNumberTo, float x, float y)
+        void DrawPreview(Vector3 point)
+
+        {
+            projector.transform.position = new Vector3(point.x, point.y+height, point.z);
+            //Debug.Log();
+        }
+
+        private void UpdateTerrainTexture(TerrainData terrainData, float x, float y)
         {
             
             x = (x + 0.5f) * 512;
             y = (y + 0.5f) * 512;
             //get current paint mask
             float[,,] alphas = terrainData.GetAlphamaps(0, 0, terrainData.alphamapWidth, terrainData.alphamapHeight);
+            int textureTo = myColorMenu.selectedItem;
             // make sure every grid on the terrain is modified
-            for (int i = 0; i < terrainData.alphamapWidth; i++)
+            for (int i = Mathf.Max(0,(int)Mathf.Floor(y-aoe)); i < Mathf.Min(Mathf.Ceil(y + aoe), terrainData.alphamapWidth); i++)
             {
-                for (int j = 0; j < terrainData.alphamapHeight; j++)
+                for (int j = Mathf.Max(0, (int)Mathf.Floor(x - aoe)); j < Mathf.Min(Mathf.Ceil(x + aoe), terrainData.alphamapWidth); j++)
                 {
                     //for each point of mask do:
                     //paint all from old texture to new texture (saving already painted in new texture)
-                    if (Mathf.Pow(j - x, 2) + Mathf.Pow(i - y, 2) < Mathf.Pow(20, 2))
+                    if (Mathf.Pow(j - x, 2) + Mathf.Pow(i - y, 2) < Mathf.Pow(aoe, 2))
                     {
-                        //Debug.Log();
-                        alphas[i, j, textureNumberTo] = Mathf.Max(alphas[i, j, textureNumberFrom], alphas[i, j, textureNumberTo]);
+                        alphas[i, j, textureTo] = 1;
                         //set old texture mask to zero
-                        alphas[i, j, textureNumberFrom] = 0f;
+                        for (int k = 0; k<10;k++)
+                        {
+                            if(k != textureTo)
+                                alphas[i, j, k] = 0f;
+                        }
                     }
 
                 }
@@ -146,6 +174,8 @@ namespace OVRTouchSample
             SetColor(m_color);
             inHand = false;
             terrData = terr.terrainData;
+            aoe = 20;
+            height = 3f;
         }
 
         private void SetColor(Color color)

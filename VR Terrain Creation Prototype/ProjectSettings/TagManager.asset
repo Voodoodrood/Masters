@@ -12,6 +12,9 @@ TagManager:
   - dontmove
   - listlast
   - terrain
+  - hillWidget
+  - hillWidgetContainer
+  - hillWidgetHeight
   layers:
   - Default
   - TransparentFX

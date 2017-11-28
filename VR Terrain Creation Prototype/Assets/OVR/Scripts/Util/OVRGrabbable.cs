@@ -137,7 +137,7 @@ public class OVRGrabbable : MonoBehaviour
         m_grabbedCollider = null;
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         if (m_grabPoints.Length == 0)
         {
