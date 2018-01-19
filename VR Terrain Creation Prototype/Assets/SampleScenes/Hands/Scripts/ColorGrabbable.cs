@@ -4,27 +4,156 @@
 \copyright Copyright 2015 Oculus VR, LLC All Rights reserved.
 ************************************************************************************/
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace OVRTouchSample
 {
     public class ColorGrabbable : OVRGrabbable
     {
-        public static readonly Color COLOR_GRAB = new Color(1.0f, 0.5f, 0.0f, 1.0f);
-        public static readonly Color COLOR_HIGHLIGHT = new Color(1.0f, 0.0f, 1.0f, 1.0f);
-
-        private Color m_color = Color.black;
-        private MeshRenderer[] m_meshRenderers = null;
-        private bool m_highlight;
-        private bool inHand;
+        private bool inLeftHand, inRightHand;
         GameObject laserLine;
+        public GameObject playerBase;
+        private Vector3 playerBasePosition;
+        RaycastHit hit;
+        List<GameObject> lines;
+        int lineTracker = -1;
+        List<Vector3> points;
+        private float timer, lineTimer;
+        public GameObject ball;
+        GameObject hillWidge;
+        public Material matt;
+        public GameObject FPV;
 
         public void Update()
         {
-            if (inHand)
+            if (OVRInput.GetDown(OVRInput.Button.Four)&& FPV.activeSelf)
             {
-                DrawLaser(this.transform.position, this.transform.position + this.transform.forward * -50, Color.red);
+                FPV.SetActive(false);
             }
+            if (inLeftHand || inRightHand)
+            {
+                if (OVRInput.GetDown(OVRInput.Button.Four))
+                {
+                    if (!FPV.activeSelf)
+                    {
+                        FPV.transform.position = (hit.point+ new Vector3(0,0.5f,0));
+                        FPV.SetActive(true);
+                    }
+                }
+                DrawLaser(this.transform.position, this.transform.position + this.transform.forward * -50, Color.red);
+                Physics.Raycast(this.transform.position, -this.transform.forward, out hit);
+
+                if (inLeftHand)
+                {
+                    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+                    {
+                        
+                        points.Clear();
+                        createBall();
+                        timer = Time.time; 
+                    }
+                    //Draws line if trigger is down
+                    if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) && points.Count>0 && Vector3.Distance(hit.point, points[points.Count - 1]) > 0.05)
+                    {
+                        lineTracker++;
+                        lines.Add(new GameObject());
+                        lines[lineTracker].AddComponent<LineRenderer>();
+                        points.Add(hit.point + new Vector3(0, 0.01f, 0));
+                        DrawLine(points);
+                        hillWidge.GetComponentInChildren<HillWidget>().AddPoint(hit.point + new Vector3(0, 0.01f, 0));   
+                    }
+
+                    if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) && Time.time - timer > 0.1 && points.Count > 1 && Physics.Raycast(this.transform.position, -this.transform.forward, out hit))
+                    {
+                            GameObject temp = Instantiate(ball, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
+                            hillWidge.GetComponentInChildren<HillWidget>().addPair(temp.GetComponentInChildren<HillWidget>());
+                            temp.GetComponentInChildren<HillWidget>().addPair(hillWidge.GetComponentInChildren<HillWidget>());
+                            temp.GetComponentsInChildren<Transform>()[1].SetPositionAndRotation(hit.point, Quaternion.Euler(0, 0, 0));
+                            temp.GetComponentsInChildren<Transform>()[2].SetPositionAndRotation(hit.point + new Vector3(0, 0, -0.1f), Quaternion.Euler(0, 0, 0));
+                    }
+                }
+                else
+                {
+                    if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+                    {
+                        points.Clear();
+                        createBall();
+                        timer = Time.time;
+                    }
+                    //Draws line if trigger is down
+                    if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger) && points.Count > 0 && Vector3.Distance(hit.point, points[points.Count - 1]) > 0.05)
+                    {
+                        //Debug.Log(Vector3.Distance(hit.point, points[points.Count - 1]));
+                        lineTracker++;
+                        lines.Add(new GameObject());
+                        lines[lineTracker].AddComponent<LineRenderer>();
+                        points.Add(hit.point + new Vector3(0, 0.01f, 0));
+                        DrawLine(points);
+                        hillWidge.GetComponentInChildren<HillWidget>().AddPoint(hit.point + new Vector3(0, 0.01f, 0));
+                    }
+
+                    if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && Time.time - timer > 0.1 && points.Count > 1 && Physics.Raycast(this.transform.position, -this.transform.forward, out hit))
+                    {
+                        GameObject temp = Instantiate(ball, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
+                        hillWidge.GetComponentInChildren<HillWidget>().addPair(temp.GetComponentInChildren<HillWidget>());
+                        temp.GetComponentInChildren<HillWidget>().addPair(hillWidge.GetComponentInChildren<HillWidget>());
+                        temp.GetComponentsInChildren<Transform>()[1].SetPositionAndRotation(hit.point, Quaternion.Euler(0, 0, 0));
+                        temp.GetComponentsInChildren<Transform>()[2].SetPositionAndRotation(hit.point + new Vector3(0, 0, -0.1f), Quaternion.Euler(0, 0, 0));
+                    }
+                }
+                
+            }
+            else
+            {
+                this.GetComponentInParent<Transform>().position = this.GetComponentInParent<Transform>().position + (playerBase.transform.position- playerBasePosition);
+            }
+
+            playerBasePosition = playerBase.transform.position;
+
+        }
+
+        public void createBall()
+        {
+            if (Physics.Raycast(this.transform.position, -this.transform.forward, out hit) && CheckforWidgets(hit.point))
+            {
+                hillWidge = Instantiate(ball, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
+                hillWidge.GetComponentsInChildren<Transform>()[1].SetPositionAndRotation(hit.point + new Vector3(0, 0.01f, 0), Quaternion.Euler(0, 0, 0));
+                hillWidge.GetComponentsInChildren<Transform>()[2].SetPositionAndRotation(hit.point + new Vector3(0, 0.02f, -0.1f), Quaternion.Euler(-90, 0, 0));
+                hillWidge.GetComponentsInChildren<Transform>()[3].SetPositionAndRotation(hit.point + new Vector3(0, 0.01f, -0.053f), Quaternion.Euler(-90, 0, 0));
+                points.Add(hit.point + new Vector3(0, 0.01f, 0));
+            }
+        }
+
+        public bool CheckforWidgets(Vector3 location)
+        {
+            bool check = true;
+            GameObject[] hillWidgets = GameObject.FindGameObjectsWithTag("hillWidgetHeight");
+            foreach (GameObject hillWidget in hillWidgets)
+            {
+                if (Vector3.Distance(hillWidget.transform.position, location) < 0.08)
+                {
+                    check = false;
+                }
+            }
+            return check;
+        }
+
+        // Used to draw lines on the map between points
+        void DrawLine(List<Vector3> pointList)
+        {
+            Debug.Log("Drawing Line");
+            lines[lineTracker].transform.position = pointList[0];
+            LineRenderer lr = lines[lineTracker].GetComponent<LineRenderer>();
+            lr.material = matt;
+            lr.startColor = Color.green;
+            lr.endColor = Color.green;
+            lr.startWidth = 0.01f;
+            lr.endWidth = 0.01f;
+            lr.positionCount = pointList.Count;
+            lr.SetPositions(pointList.ToArray());
         }
 
         void DrawLaser(Vector3 start, Vector3 end, Color color, float duration = 0.02f)
@@ -43,82 +172,32 @@ namespace OVRTouchSample
             GameObject.Destroy(laserLine, duration);
         }
 
-        public bool Highlight
-        {
-            get { return m_highlight; }
-            set
-            {
-                m_highlight = value;
-                UpdateColor();
-            }
-        }
-
-        protected void UpdateColor()
-        {
-            if (isGrabbed) SetColor(COLOR_GRAB);
-            else if (Highlight) SetColor(COLOR_HIGHLIGHT);
-            else SetColor(m_color);
-
-        }
-
         override public void GrabBegin(OVRGrabber hand, Collider grabPoint)
         {
+            if (hand.tag == "RightHand")
+                inRightHand = true;
+            else
+                inLeftHand = true;
             base.GrabBegin(hand, grabPoint);
-            UpdateColor();
-            inHand = true;
         }
 
         override public void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
         {
             base.GrabEnd(linearVelocity, angularVelocity);
-            UpdateColor();
-            inHand = false;
-        }
-
-        void Awake()
-        {
-            if (m_grabPoints.Length == 0)
-            {
-                // Get the collider from the grabbable
-                Collider collider = this.GetComponent<Collider>();
-                if (collider == null)
-                {
-				    throw new System.ArgumentException("Grabbables cannot have zero grab points and no collider -- please add a grab point or collider.");
-                }
-    
-                // Create a default grab point
-                m_grabPoints = new Collider[1] { collider };
-
-                // Grab points are doing double-duty as a way to identify submeshes that should be colored.
-                // If unspecified, just color self.
-                m_meshRenderers = new MeshRenderer[1];
-                m_meshRenderers[0] = this.GetComponent<MeshRenderer>();
-            }
+            if (inRightHand)
+                inRightHand = false;
             else
-            {
-                m_meshRenderers = this.GetComponentsInChildren<MeshRenderer>();
-            }
-            m_color = new Color(
-                Random.Range(0.1f, 0.95f),
-                Random.Range(0.1f, 0.95f),
-                Random.Range(0.1f, 0.95f),
-                1.0f
-            );
-            SetColor(m_color);
-            inHand = false;
+                inLeftHand = false;
         }
 
-        private void SetColor(Color color)
+        protected override void Awake()
         {
-            for (int i = 0; i < m_meshRenderers.Length; ++i)
-            {
-                MeshRenderer meshRenderer = m_meshRenderers[i];
-                for (int j = 0; j < meshRenderer.materials.Length; ++j)
-                {
-                    Material meshMaterial = meshRenderer.materials[j];
-                    meshMaterial.color = color;
-                }
-            }
+            base.Awake();
+            playerBasePosition = new Vector3(playerBase.transform.position.x, playerBase.transform.position.y, playerBase.transform.position.z);
+            inLeftHand = false;
+            inRightHand = false;
+            points = new List<Vector3>();
+            lines = new List<GameObject>();
         }
     }
 }

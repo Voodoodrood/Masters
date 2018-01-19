@@ -6,6 +6,7 @@ using System;
 public class OvrAvatarBase: MonoBehaviour, IAvatarPart
 {
     float alpha = 1.0f;
+   
 
     public void SetAlpha(float alpha)
     {

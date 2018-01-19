@@ -15,6 +15,9 @@ TagManager:
   - hillWidget
   - hillWidgetContainer
   - hillWidgetHeight
+  - PaintBrush
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX

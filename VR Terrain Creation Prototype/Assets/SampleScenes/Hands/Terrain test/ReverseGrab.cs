@@ -8,7 +8,7 @@ public class ReverseGrab : OVRGrabber
     public Transform [] staticComp;
     Vector3 camPos, camAngle;
     Vector3 [] staticPos, staticAngle;
-    public GameObject handLeft, handRight;
+    public GameObject handLeft, handRight, projector;
     private bool grabbed;
     //public Transform temp;
     protected override void OnUpdatedAnchors()
@@ -68,9 +68,11 @@ public class ReverseGrab : OVRGrabber
       }
     protected override void GrabBegin()
     {
+
+        
         
         camPos = new Vector3(cam.localPosition.x, cam.localPosition.y, cam.localPosition.z);
-        Debug.Log("X: " + cam.localPosition.x + " Y: "+ cam.localPosition.y+ " Z: "+ cam.localPosition.z);
+        //Debug.Log("X: " + cam.localPosition.x + " Y: "+ cam.localPosition.y+ " Z: "+ cam.localPosition.z);
         camAngle = new Vector3(cam.localEulerAngles.x, cam.localEulerAngles.y, cam.localEulerAngles.z);
         staticPos = new Vector3[staticComp.Length];
         staticAngle = new Vector3[staticComp.Length];
@@ -80,11 +82,21 @@ public class ReverseGrab : OVRGrabber
             staticAngle[i] = new Vector3(staticComp[i].localEulerAngles.x, staticComp[i].localEulerAngles.y, staticComp[i].localEulerAngles.z);
         }
         base.GrabBegin();
+        if (m_grabbedObj != null && m_grabbedObj.tag == "PaintBrush")
+        {
+            projector.SetActive(true);
+            //Debug.Log("Snapps1");
+        }
     }
 
     protected override void GrabEnd()
     {
         //Debug.Log("Snapps");
+        if (m_grabbedObj != null && m_grabbedObj.tag == "PaintBrush")
+        {
+            projector.SetActive(false);
+            //Debug.Log("Snapps2");
+        }
         if (m_grabbedObj != null && m_grabbedObj.tag == "terrain")
         {
             m_grabbedObj.transform.position = new Vector3(0, 0.28f, 0);
