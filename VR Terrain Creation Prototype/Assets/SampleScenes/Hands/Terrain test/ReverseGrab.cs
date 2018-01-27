@@ -63,7 +63,11 @@ public class ReverseGrab : OVRGrabber
             {
                 
                 base.MoveGrabbedObject(pos, rot,forceTeleport);
-            }
+                if (m_grabbedObj != null && m_grabbedObj.tag == "hillWidgetHeight")
+                {
+                    m_grabbedObj.GetComponentInParent<HillWidget>().SetPosition(true);
+                }
+        }
            
       }
     protected override void GrabBegin()
@@ -101,6 +105,8 @@ public class ReverseGrab : OVRGrabber
         {
             m_grabbedObj.transform.position = new Vector3(0, 0.28f, 0);
         }
+        
+            
         base.GrabEnd();
         grabbed = false;
         

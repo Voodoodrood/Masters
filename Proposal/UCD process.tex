@@ -1,0 +1,75 @@
+\documentclass{sig-alternate-05-2015}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{subfiles}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{soul}
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+\makeatletter
+\def\@copyrightspace{\relax}
+\makeatother
+\title{User Centred design process}
+\begin{document}
+\maketitle
+\section{Justification and Methods}
+
+User centred design (UCD) is a way of involving users in the design of artefacts\cite{abras2004user}. In our case: the design of a user interface for the creation of terrains in VR.
+\newline\newline
+UCD covers a number of techniques that can be implemented at various stages of the design\cite{abras2004user}. Because we are not starting from scratch but rather basing the interface on an existing artefact we do not employ some of the UCD techniques typically used in the earlier stages of the design cycle. However we use simulation and usability testing techniques in the prototype design stages. We also use questionnaires for our final evaluation of the interface design.
+\newline\newline 
+By performing simulation and usability testing in the prototyping design stage we can address the majority of the usability issues before the final interface evaluation\cite{Nielsen1990}. This ensures that the VE interface being compared to the existing desktop interface is robust and usable. This is necessary to ensure that a fair comparison is made between the VR and desktop interfaces and prevents a flaw in interface design affecting our results.
+\newline\newline
+The final evaluation and comparison of the interfaces is carried out by a group of students with experience using 3D content creation tools. We chose this group as they will have similar skills and experience to our target users\cite{Bowman2002}. By doing this we ensure our results are relevant to potential end users.
+
+\section{Initial Design concepts}
+Since our interface is based on an existing artefact we already had a basis for the initial design concept. However, the interface medium was different: a HMD and 6 DOF controllers as opposed to a desktop with mouse and keyboard. This meant that certain interface elements would need to be modified and new interaction metaphors would need to be adopted.
+\newline\newline
+Many of our initial changes were based on findings in literature regarding the effective design of VR interfaces. Examples of this include menu design and performing actions at a distance. Using the literature as reference we were able to formulate a complete interface concept.
+\newline\newline
+\hl{Insert content here about initial designs and why we chose specific options over others}
+\section{Paper Prototype}
+Once we had decided on an initial design we created a paper prototype. This meant that we had a physical artefact that could simulate a certain level of interaction rather than a purely theoretical design. We decided to use a paper prototype as it was fast and cheap to create. However, we were limited in the fidelity of the prototype.
+\newline\newline
+The paper prototype allowed the user to interact with all UI elements that were planned to be included in the VE interface. It also included a number of user instructions to guide first time users through the program. Although the interface elements would react to user input it was not feasible to have the terrain model itself to react. Thus users were required to imagine how the terrain would change based on verbal feedback.
+\newline\newline
+The prototype was constructed using a number of parts to represent various interface elements. The displayed terrain itself was represented by a flat sheet of paper on a table surface. This allowed UI elements to be placed onto the terrain surface in approximation to the functionality of the VE. Users were asked to keep in mind that the terrain image was simply a representation of the VR display. A number of UI elements were represented by small cardboard tokens which could be placed on the terrain or "view area".
+\newline\newline
+Although users did not wear an HMD while interacting with the prototype they were given the 6 DOF hand held devices that would be used with the final interface. This allowed them to simulate the interaction they would have with the final interface. The devices were not tracked using software so users were required to state out loud what actions they were performing with the devices. An experimenter was then able to modify the terrain representation in correspondence to the action taken. For example: The user would point to a certain point and report pressing the button assigned to creating a constraint. The experimenter would then place the representation of a constraint at that point on the terrain.
+
+\subsection{Evaluation}
+The paper prototype was evaluated through a Cognitive Walkthrough method\cite{Bowman2002}. Users were asked to perform a number of basic actions with the help of textual instructions that represented the typical first time user experience with the interface. Users reported verbally on problems and insights they had with regards to the interface while performing these actions. Each experiment was video recorded for later review.
+\newline\newline
+\hl{Insert content here about specific user feedback}
+\newline\newline
+Based on this feedback the prototype design could be modified and improved to increase its usability.
+\newline\newline
+We used this method of evaluation as it did not require our participants to be representative of our end users\cite{Bowman2002}. This made it easier to recruit participants quickly. It also required less time and expertise from participants than a heuristic evaluation would have. We decided that evaluating the paper prototype quickly and minimising the use of time resources was most suitable due to the low fidelity of the prototype. This allowed us to efficiently trap the largest usability issues related to the prototype.
+
+\subsection{Changes to Design}
+
+A number changes to the design of the interface were made based on the paper prototype evaluation.
+\newline\newline
+The way in which users interacted with the widget controlling the point constraints was clearly not intuitive and many users had difficulty with this. We therefore completely redesigned how this widget worked. The original concept preserved the concept of three independent axes that could be manipulated. However, this did not translate well into a 3D environment where there were six degrees of freedom. We therefore changed the widget to a one control for height and an second control that simultaneously defined the area of the constraint and the slope angle. The height control was restricted to movement along the y-axis but the area/angle control could freely be manipulated in 3D space. This simplified the control scheme and took advantage of the 6 DOF interaction devices.
+\newline\newline
+Another usability issue arose with regards to the menu design. Specifically users were required to use menu interfaces too often. Each step of a task often required the user to interact with a menu. To solve this problem we replaced a large part of the menu functionality with 3D props. This meant that users could simply pick up the desired tool from the environment rather than being forced to enter and exit a menu to select an action type.
+
+\section{High Fidelity prototype}
+
+This prototype was created using Unity and was based off the paper prototype together with modifications resulting from the previous evaluation. It allows real time terrain interaction and supports the use of an Oculus rift HMD together with 2 Oculus touch controllers which are 6 DOF devices. It closely represents what the final interface is expected to look like. However, the terrain visual quality and realism is reduced and performance is slightly lower than expected for the final implementation.
+\newline\newline
+The prototype was created using Unity as it had better support for the Oculus Rift resulting in it being significantly more efficient and reliable. This meant that the prototype could be reliably created in a short amount of time. A large amount of uncertainty surrounded the possibility of integrating the HMD interface into the existing C++ application within the desired time period. As delays had been encountered in other parts of the project it was decided that the reliable and fast option should be taken even if this meant a loss of visual fidelity.
+\newline\newline
+Apart from the design changes the largest difference in this prototype from the paper prototype is the real time terrain interaction. This means the user receives instant feedback to their actions without going through an experimenter to explain what is happening. This was expected to greatly increase the speed at which the user was able to understand effective methods of interaction and reduce frustration.
+
+
+\subsection{Evaluation}
+The High fidelity prototype was evaluated through a heuristic evaluation tool\cite{Bowman2002}. We used heuristics and an expert evaluation method that is the widely accepted approach for user interface evaluation, but modified for VEs\cite{Sutcliffe2004}.
+
+\bibliographystyle{abbrv}
+\bibliography{proposal}
+\end{document}

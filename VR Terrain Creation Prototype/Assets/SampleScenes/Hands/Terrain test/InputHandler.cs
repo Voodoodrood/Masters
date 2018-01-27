@@ -103,10 +103,10 @@ public class InputHandler : MonoBehaviour
         foreach (GameObject hillWidget in hillWidgets)
         {
             HillWidget current = hillWidget.GetComponent<HillWidget>();
-            if (grabberRight.getGrabbed() != null && (grabberRight.getGrabbed() == "hillWidgetHeight"))
+            /*if (grabberRight.getGrabbed() != null && (grabberRight.getGrabbed() == "hillWidgetHeight"))
                 current.SetPosition(true);
             else
-                current.SetPosition(false);
+                current.SetPosition(false);*/
             current.SetWidth();
             float xPos = current.GetPosition().x;
             float zPos = current.GetPosition().z;
@@ -120,14 +120,30 @@ public class InputHandler : MonoBehaviour
                 {
                     for (int i =0; i<current.GetPoints().Count;i++)
                     {
-                        //CreateHill(convert(current.GetPoints()[i].x), convert(current.GetPoints()[i].z), (current.GetPosition().y*(1-((float)i / current.GetPoints().Count)) + current.getPair().GetPosition().y * (((float)i / current.GetPoints().Count))), width);
-                        //Debug.Log("I: " +i + " count: " + current.GetPoints().Count + " weighting: " + (1 - ((float)i / current.GetPoints().Count)) + " total: " + current.GetPosition().y * (1 - (i / current.GetPoints().Count)));
+                        CreateRidge(convert(current.GetPoints()[i].x), convert(current.GetPoints()[i].z), (current.GetPosition().y*(1-((float)i / current.GetPoints().Count)) + current.getPair().GetPosition().y * (((float)i / current.GetPoints().Count))), width);
                     }
                 }
-            }            
+            }
+            
         }
-        //Smooth();
-        terr.terrainData.SetHeightsDelayLOD(0, 0, heights);
+        foreach (GameObject hillWidget in hillWidgets)
+        {
+            HillWidget current = hillWidget.GetComponent<HillWidget>();
+            current.setHeight(heights[(int)(((current.GetPosition().z / scale) + 1) * 256), (int)(((current.GetPosition().x / scale) + 1) * 256)]);
+            if (current.getPair() != null)
+            {
+                if (current.GetPoints() != null)
+                {
+                    for (int i = 0; i < current.GetPoints().Count; i++)
+                    {
+                        current.ChangePoint(heights[(int)(((current.GetPoints()[i].z / scale) + 1) * 256), (int)(((current.GetPoints()[i].x / scale) + 1) * 256)], i);
+                    }
+                }
+            }
+            current.DrawLine();
+        }
+            //Smooth();
+            terr.terrainData.SetHeightsDelayLOD(0, 0, heights);
         //Smooth();
     }
 
@@ -166,7 +182,6 @@ public class InputHandler : MonoBehaviour
         k = z - angle * x;
 
         float point = 0;
-        Debug.Log(steepness);
         steepness += 2.1f;
 
         for (int a = (int)Mathf.Max(0,z-(area*(-600))); a < (int)Mathf.Min(513, z + (area * (-600))); a++)
@@ -187,6 +202,24 @@ public class InputHandler : MonoBehaviour
                 if (point > 0.005f)
                     if (heights[a, b] > 0.01f)
                         heights[a, b] = Mathf.Max(heights[a, b] , point);
+                    else
+                        heights[a, b] = point;
+            }
+        }
+
+    }
+    public void CreateRidge(float x, float z, float y, float area)
+    {
+        float point;
+        for (int a = (int)Mathf.Max(0, z - (area * (-600))); a < (int)Mathf.Min(513, z + (area * (-600))); a++)
+        {
+            for (int b = (int)Mathf.Max(0, x - (area * (-600))); b < (int)Mathf.Min(513, x + (area * (-600))); b++)
+            {
+                point = (y + 0.1f) * Mathf.Pow((float)Math.E, -(float)((1 / (double)(2 * Math.Pow((area * (200)), 2))) * (Mathf.Pow((x - b), 2) + Mathf.Pow((z - a), 2))));
+
+                if (point > 0.005f) { }
+                    if (heights[a, b] > 0.01f)
+                        heights[a, b] = Mathf.Max(heights[a, b], point);
                     else
                         heights[a, b] = point;
             }

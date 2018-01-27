@@ -18,13 +18,10 @@ namespace OVRTouchSample
         public GameObject playerBase;
         private Vector3 playerBasePosition;
         RaycastHit hit;
-        List<GameObject> lines;
-        int lineTracker = -1;
         List<Vector3> points;
-        private float timer, lineTimer;
+        //private float timer, lineTimer;
         public GameObject ball;
         GameObject hillWidge;
-        public Material matt;
         public GameObject FPV;
 
         public void Update()
@@ -52,21 +49,17 @@ namespace OVRTouchSample
                     {
                         
                         points.Clear();
-                        createBall();
-                        timer = Time.time; 
+                        createBall(); 
                     }
                     //Draws line if trigger is down
                     if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) && points.Count>0 && Vector3.Distance(hit.point, points[points.Count - 1]) > 0.05)
                     {
-                        lineTracker++;
-                        lines.Add(new GameObject());
-                        lines[lineTracker].AddComponent<LineRenderer>();
                         points.Add(hit.point + new Vector3(0, 0.01f, 0));
-                        DrawLine(points);
-                        hillWidge.GetComponentInChildren<HillWidget>().AddPoint(hit.point + new Vector3(0, 0.01f, 0));   
+                        hillWidge.GetComponentInChildren<HillWidget>().AddPoint(hit.point + new Vector3(0, 0.01f, 0));
+                        hillWidge.GetComponentInChildren<HillWidget>().DrawLine();
                     }
 
-                    if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) && Time.time - timer > 0.1 && points.Count > 1 && Physics.Raycast(this.transform.position, -this.transform.forward, out hit))
+                    if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) && points.Count > 1 && Physics.Raycast(this.transform.position, -this.transform.forward, out hit))
                     {
                             GameObject temp = Instantiate(ball, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
                             hillWidge.GetComponentInChildren<HillWidget>().addPair(temp.GetComponentInChildren<HillWidget>());
@@ -81,21 +74,16 @@ namespace OVRTouchSample
                     {
                         points.Clear();
                         createBall();
-                        timer = Time.time;
                     }
                     //Draws line if trigger is down
                     if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger) && points.Count > 0 && Vector3.Distance(hit.point, points[points.Count - 1]) > 0.05)
                     {
-                        //Debug.Log(Vector3.Distance(hit.point, points[points.Count - 1]));
-                        lineTracker++;
-                        lines.Add(new GameObject());
-                        lines[lineTracker].AddComponent<LineRenderer>();
                         points.Add(hit.point + new Vector3(0, 0.01f, 0));
-                        DrawLine(points);
                         hillWidge.GetComponentInChildren<HillWidget>().AddPoint(hit.point + new Vector3(0, 0.01f, 0));
+                        hillWidge.GetComponentInChildren<HillWidget>().DrawLine();
                     }
 
-                    if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && Time.time - timer > 0.1 && points.Count > 1 && Physics.Raycast(this.transform.position, -this.transform.forward, out hit))
+                    if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && points.Count > 1 && Physics.Raycast(this.transform.position, -this.transform.forward, out hit))
                     {
                         GameObject temp = Instantiate(ball, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
                         hillWidge.GetComponentInChildren<HillWidget>().addPair(temp.GetComponentInChildren<HillWidget>());
@@ -124,6 +112,7 @@ namespace OVRTouchSample
                 hillWidge.GetComponentsInChildren<Transform>()[2].SetPositionAndRotation(hit.point + new Vector3(0, 0.02f, -0.1f), Quaternion.Euler(-90, 0, 0));
                 hillWidge.GetComponentsInChildren<Transform>()[3].SetPositionAndRotation(hit.point + new Vector3(0, 0.01f, -0.053f), Quaternion.Euler(-90, 0, 0));
                 points.Add(hit.point + new Vector3(0, 0.01f, 0));
+                hillWidge.GetComponentInChildren<HillWidget>().AddPoint(hit.point + new Vector3(0, 0.01f, 0));
             }
         }
 
@@ -140,21 +129,7 @@ namespace OVRTouchSample
             }
             return check;
         }
-
-        // Used to draw lines on the map between points
-        void DrawLine(List<Vector3> pointList)
-        {
-            Debug.Log("Drawing Line");
-            lines[lineTracker].transform.position = pointList[0];
-            LineRenderer lr = lines[lineTracker].GetComponent<LineRenderer>();
-            lr.material = matt;
-            lr.startColor = Color.green;
-            lr.endColor = Color.green;
-            lr.startWidth = 0.01f;
-            lr.endWidth = 0.01f;
-            lr.positionCount = pointList.Count;
-            lr.SetPositions(pointList.ToArray());
-        }
+        
 
         void DrawLaser(Vector3 start, Vector3 end, Color color, float duration = 0.02f)
         {
@@ -197,7 +172,6 @@ namespace OVRTouchSample
             inLeftHand = false;
             inRightHand = false;
             points = new List<Vector3>();
-            lines = new List<GameObject>();
         }
     }
 }
