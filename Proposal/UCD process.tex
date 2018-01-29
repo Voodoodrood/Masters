@@ -1,4 +1,4 @@
-\documentclass{sig-alternate-05-2015}
+\documentclass{article}
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{subfiles}
@@ -16,13 +16,13 @@
 \title{User Centred design process}
 \begin{document}
 \maketitle
-\section{Justification and Methods}
+\section{Overview of Methods}
 
 User centred design (UCD) is a way of involving users in the design of artefacts\cite{abras2004user}. In our case: the design of a user interface for the creation of terrains in VR.
 \newline\newline
-UCD covers a number of techniques that can be implemented at various stages of the design\cite{abras2004user}. Because we are not starting from scratch but rather basing the interface on an existing artefact we do not employ some of the UCD techniques typically used in the earlier stages of the design cycle. However we use simulation and usability testing techniques in the prototype design stages. We also use questionnaires for our final evaluation of the interface design.
+UCD covers a number of techniques that can be implemented at various stages of the design\cite{abras2004user}. Because we are not starting from scratch but rather basing the interface on an existing artefact we do not employ some of the UCD techniques typically used in the earlier stages of the design cycle\cite{McLoone2004}. However we use simulation and usability testing techniques in the prototype design stages. We also use questionnaires for our final evaluation of the interface design.
 \newline\newline 
-By performing simulation and usability testing in the prototyping design stage we can address the majority of the usability issues before the final interface evaluation\cite{Nielsen1990}. This ensures that the VE interface being compared to the existing desktop interface is robust and usable. This is necessary to ensure that a fair comparison is made between the VR and desktop interfaces and prevents a flaw in interface design affecting our results.
+By performing simulation and usability testing in the prototyping design stage we can address the majority of the usability issues before the final interface evaluation\cite{nielsen1990heuristic}. This ensures that the VE interface being compared to the existing desktop interface is robust and usable. This is necessary to ensure that a fair comparison is made between the VR and desktop interfaces and prevents a flaw in interface design affecting our results.
 \newline\newline
 The final evaluation and comparison of the interfaces is carried out by a group of students with experience using 3D content creation tools. We chose this group as they will have similar skills and experience to our target users\cite{Bowman2002}. By doing this we ensure our results are relevant to potential end users.
 
@@ -44,11 +44,12 @@ Although users did not wear an HMD while interacting with the prototype they wer
 \subsection{Evaluation}
 The paper prototype was evaluated through a Cognitive Walkthrough method\cite{Bowman2002}. Users were asked to perform a number of basic actions with the help of textual instructions that represented the typical first time user experience with the interface. Users reported verbally on problems and insights they had with regards to the interface while performing these actions. Each experiment was video recorded for later review.
 \newline\newline
+We used this method of evaluation as it did not require our participants to be representative of our end users\cite{Bowman2002}. This made it easier to recruit participants quickly. It also required less time and expertise from participants than a heuristic evaluation would have. We decided that evaluating the paper prototype quickly and minimising the use of time resources was most suitable due to the low fidelity of the prototype. This allowed us to efficiently trap the largest usability issues related to the prototype.
+\newline\newline
 \hl{Insert content here about specific user feedback}
 \newline\newline
 Based on this feedback the prototype design could be modified and improved to increase its usability.
-\newline\newline
-We used this method of evaluation as it did not require our participants to be representative of our end users\cite{Bowman2002}. This made it easier to recruit participants quickly. It also required less time and expertise from participants than a heuristic evaluation would have. We decided that evaluating the paper prototype quickly and minimising the use of time resources was most suitable due to the low fidelity of the prototype. This allowed us to efficiently trap the largest usability issues related to the prototype.
+
 
 \subsection{Changes to Design}
 
@@ -68,8 +69,41 @@ Apart from the design changes the largest difference in this prototype from the 
 
 
 \subsection{Evaluation}
-The High fidelity prototype was evaluated through a heuristic evaluation tool\cite{Bowman2002}. We used heuristics and an expert evaluation method that is the widely accepted approach for user interface evaluation, but modified for VEs\cite{Sutcliffe2004}.
+The High fidelity prototype was evaluated through a heuristic evaluation tool\cite{Bowman2002}. We used a set of heuristics and an expert evaluation method that is the widely accepted approach for user interface evaluation, but modified for VEs\cite{Sutcliffe2004}\hl{need to be paraphrased better}. Heuristic evaluation is a cost effective method of usability evaluation\cite{nielsen1990heuristic}. Although any number of evaluators can be involved; three to five is the recommended number\cite{nielsen1990heuristic}.
+\newline\newline
+Prior to the evaluation the evaluation procedure was explained to the participants. This included describing the technology audit, going over the heuristics and the way in which they applied as well as how to rank the severity of issues. Users also went through the standard Oculus introduction to the touch controllers. This is the intro any first time user goes through when setting up the Oculus Touch controllers so is assumed as the bare baseline of proficiency when using them.
+\newline\newline
+The method of evaluation is slightly different to the process for expert evaluation recommended by Nielsen\cite{Sutcliffe2004}. Specifically it involves an initial technology audit step. This allows the evaluator to establish what the VR technology is capable of as a baseline. By doing this we avoid identifying usability issues that are an inherent property of the VR equipment. For example, there is no haptic feedback so users will not be able to feel objects in the VE. The technology audit aims to identify usability issues in four principle areas: Operation of user's presence, haptic feedback, interactive techniques and realistic graphics. User's presence refers to how the user is represented within the VE, Haptic feedback refers to the touch feedback provided by the VR technology, Interactive techniques refer to how the user interacts with objects in the VE and realistic graphics refer to the realism of the graphics the VE is able to provide.
+\newline\newline
+After the technology audit is performed the user then familiarizes themselves with the application before carrying out a number of typical user tasks. While carrying out these tasks the user will note any issues encountered. Since our users were wearing a HMD during this part of the experiment they were asked to verbally describe the issue. These descriptions were both video recorded and written down by an experimenter.
+\newline\newline
+After the tasks were completed the user left the VE, They then associated each issue with a heuristic. Where an issue related to more than one heuristic the most applicable heuristic was chosen with a note made relating to the other applicable heuristics\cite{Sutcliffe2004}. Finally each issue is ranked by the severity of the impact it has on the assigned heuristic.
+\newline\newline
+\hl{List and explain heuristics here or elsewhere?}
 
+\subsection{Changes to Design}
+
+\hl{Will be filled in post evaluation}
+
+\section{Final Design}
+
+This is the final iteration of the interface. It was created in C++ on top of the existing desktop application. It incorporates all features and the visual fidelity of the desktop application. This allows us to directly compare the usability of the VE system against the desktop system in our final evaluation.
+\newline\newline
+As with the high fidelity prototype the interface supports the use of an Oculus rift HMD together with 2 Oculus touch controllers. \hl{Would like to say performance is equal on both systems but this remains to be seen.}
+
+\subsection{Pilot Test}
+
+Prior to the final evaluation of the VE and desktop applications a pilot test was conducted. This was done under the same experimental conditions and using the same methods as the final evaluation. The intention was to ensure the the experimental design was sound and that there were no issues with any of the hardware or software used or the instructions given to participants.
+
+\hl{Will need to expand here in the event that changes are made due to the pilot test}
+
+\subsection{Evaluation}
+
+The evaluation of the final interface will be carried out through summative evaluation\cite{Bowman2002}. Specifically the desktop and VE applications will be compared statistically based off post-hoc questionnaire tools as well as measures of time taken to complete tasks and the accuracy of terrain models produced.
+\newline\newline
+For these evaluations we require that our participants are representative of our end users\cite{Bowman2002}. Therefore participants will be drawn from Computer Science students who have worked with 3D modelling engines and Architecture students who have experience with 3D modelling. This ensures participants have a certain level of capability and intuition with respect to interacting with 3D modelling interfaces, typical of entry level employees in the area of 3D content creation. Additionally participants will take part in a training session before the evaluation session in order to familiarize themselves with the applications.  This is because previous research has shown that training has a significant effect on user performance in VEs\cite{Schultheis2012}.
+\newline\newline
+During the evaluation participants were asked to perform a number of tasks in the application. These include creating a terrain with set attributes as quickly as possible, reproducing a terrain based on an image as quickly as possible(In the VE the image was projected onto a surface users could look at) and creating a complete terrain of their choice. Each of these tasks is meant to measure the speed, accuracy and usability of each system in order to compare them.
 \bibliographystyle{abbrv}
 \bibliography{proposal}
 \end{document}
