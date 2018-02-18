@@ -39,7 +39,6 @@ public class OVRInspector : MonoBehaviour
 {
     // Singleton instance
     public static OVRInspector instance { get; private set; }
-
     // Tweakable values
     [Header("Display parameters")]
     [Tooltip("Default distance from eye to GUI")]
@@ -213,6 +212,9 @@ public class OVRInspector : MonoBehaviour
 
     //Button references for disabling/enabling specific buttons 
     private Button recenterButton;
+    private Button resetButton;
+    private Button dismissInstructions;
+    private Button startInstructions;
     private Button lastSelectedContextButton;
 
     //Cache of playcontroller state
@@ -799,7 +801,10 @@ public class OVRInspector : MonoBehaviour
                 AddContextButton(details);
         }
         //Add a button to close the menu
-        recenterButton = leftPanel.AddButton("Recenter", delegate { Recenter(); }, buttonPrefab);
+        recenterButton = leftPanel.AddButton("Recenter Camera", delegate { Recenter(); }, buttonPrefab);
+        resetButton = leftPanel.AddButton("Reset tools", delegate { resetTools(); }, buttonPrefab);
+        dismissInstructions = leftPanel.AddButton("Disable Instructions", delegate { instructions(false); }, buttonPrefab);
+        startInstructions = leftPanel.AddButton("Reset Instructions", delegate { instructions(true); }, buttonPrefab);
         if (allowClose)
         {
             leftPanel.AddButton("Close", delegate { Hide(); }, buttonPrefab);
@@ -810,7 +815,18 @@ public class OVRInspector : MonoBehaviour
                 AddContextButton(details);
         }
     }
-
+     public void instructions(bool on)
+    {
+        if (on)
+        {
+            GameObject.Find("InstructionText").GetComponent<Text>().enabled = true;
+            GameObject.Find("InstructionText").GetComponent<Instructions>().resetBools();
+        }
+        else
+        {
+            GameObject.Find("InstructionText").GetComponent<Text>().enabled = false;
+        }
+    }
     /// <summary>
     /// Remove any menu contexts which belong to scene-specific contexts from a previous scene
     /// </summary>
@@ -1169,6 +1185,14 @@ public class OVRInspector : MonoBehaviour
     {
         StartCoroutine(RecenterCountdown());
     }
+
+    void resetTools()
+    {
+        PainterGrab paintbrush = GameObject.Find("PaintBrush").GetComponent<PainterGrab>();
+        paintbrush.resetPosition();
+        ColorGrabbable pencil = GameObject.Find("pencil").GetComponent<ColorGrabbable>();
+        pencil.resetPosition();
+    }
     /// <summary>
     /// Countdown on recenter button to zero then actually recenter tracking
     /// </summary>
@@ -1184,7 +1208,6 @@ public class OVRInspector : MonoBehaviour
         }
         OVRManager.display.RecenterPose();
         Reposition(true); // Keep the GUI in front of the camera
-        SetButtonText(recenterButton, "Recenter");
         recenterButton.interactable = true;
     }
     #endregion Top Level Menu Features 

@@ -65,7 +65,7 @@ public class ReverseGrab : OVRGrabber
                 base.MoveGrabbedObject(pos, rot,forceTeleport);
                 if (m_grabbedObj != null && m_grabbedObj.tag == "hillWidgetHeight")
                 {
-                    m_grabbedObj.GetComponentInParent<HillWidget>().SetPosition(true);
+                m_grabbedObj.GetComponentInParent<HillWidget>().SetPosition(true);
                 }
         }
            
@@ -103,7 +103,7 @@ public class ReverseGrab : OVRGrabber
         }
         if (m_grabbedObj != null && m_grabbedObj.tag == "terrain")
         {
-            m_grabbedObj.transform.position = new Vector3(0, 0.28f, 0);
+            m_grabbedObj.transform.position = new Vector3(0, 0.29f, 0);
         }
         
             

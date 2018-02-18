@@ -9,41 +9,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OVRTouchSample
-{
     public class ColorGrabbable : OVRGrabbable
     {
-        private bool inLeftHand, inRightHand;
+        public bool inLeftHand, inRightHand;
         GameObject laserLine;
         public GameObject playerBase;
         private Vector3 playerBasePosition;
         RaycastHit hit;
         List<Vector3> points;
         //private float timer, lineTimer;
-        public GameObject ball;
+        public GameObject ball, landmark;
         GameObject hillWidge;
         public GameObject FPV;
+        public CircularMenu myWidgetMenu;
 
         public void Update()
         {
-            if (OVRInput.GetDown(OVRInput.Button.Four)&& FPV.activeSelf)
+            myWidgetMenu.GetCurrentMenuItem();
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && FPV.activeSelf)
             {
                 FPV.SetActive(false);
             }
             if (inLeftHand || inRightHand)
             {
-                if (OVRInput.GetDown(OVRInput.Button.Four))
-                {
-                    if (!FPV.activeSelf)
-                    {
-                        FPV.transform.position = (hit.point+ new Vector3(0,0.5f,0));
-                        FPV.SetActive(true);
-                    }
-                }
                 DrawLaser(this.transform.position, this.transform.position + this.transform.forward * -50, Color.red);
                 Physics.Raycast(this.transform.position, -this.transform.forward, out hit);
 
-                if (inLeftHand)
+                if (inLeftHand && myWidgetMenu.selectedItem == 0)
                 {
                     if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
                     {
@@ -68,7 +60,22 @@ namespace OVRTouchSample
                             temp.GetComponentsInChildren<Transform>()[2].SetPositionAndRotation(hit.point + new Vector3(0, 0, -0.1f), Quaternion.Euler(0, 0, 0));
                     }
                 }
-                else
+                else if ((inLeftHand && myWidgetMenu.selectedItem == 1))
+                {
+                    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+                    {
+                        createLandmark();
+                    }
+                }
+                else if ((inLeftHand && myWidgetMenu.selectedItem == 2))
+                {
+                    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)&&!FPV.activeSelf)
+                    {
+                        FPV.transform.position = (hit.point + new Vector3(0, 0.5f, 0));
+                        FPV.SetActive(true);
+                    }
+                }
+                else if (myWidgetMenu.selectedItem == 0)
                 {
                     if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                     {
@@ -92,7 +99,21 @@ namespace OVRTouchSample
                         temp.GetComponentsInChildren<Transform>()[2].SetPositionAndRotation(hit.point + new Vector3(0, 0, -0.1f), Quaternion.Euler(0, 0, 0));
                     }
                 }
-                
+                else if ((inRightHand && myWidgetMenu.selectedItem == 1))
+                {
+                    if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+                    {
+                        createLandmark();
+                    }
+                }
+                else if ((inRightHand && myWidgetMenu.selectedItem == 2))
+                {
+                    if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !FPV.activeSelf)
+                    {
+                        FPV.transform.position = (hit.point + new Vector3(0, 0.5f, 0));
+                        FPV.SetActive(true);
+                    }
+                }
             }
             else
             {
@@ -101,6 +122,12 @@ namespace OVRTouchSample
 
             playerBasePosition = playerBase.transform.position;
 
+        }
+
+        public void resetPosition()
+        {
+            this.GetComponentInParent<Transform>().position = new Vector3(0.05f, -0.15f, 0.3f) + (playerBase.transform.position);
+            this.GetComponentInParent<Transform>().localRotation = Quaternion.Euler(-125, 5, 18);
         }
 
         public void createBall()
@@ -113,6 +140,15 @@ namespace OVRTouchSample
                 hillWidge.GetComponentsInChildren<Transform>()[3].SetPositionAndRotation(hit.point + new Vector3(0, 0.01f, -0.053f), Quaternion.Euler(-90, 0, 0));
                 points.Add(hit.point + new Vector3(0, 0.01f, 0));
                 hillWidge.GetComponentInChildren<HillWidget>().AddPoint(hit.point + new Vector3(0, 0.01f, 0));
+                Debug.Log(hit.point + new Vector3(0, 0.01f, 0));
+                //hillWidge.GetComponentInChildren<HillWidget>().SetPosition(false);
+            }
+        }
+        public void createLandmark()
+        {
+            if (Physics.Raycast(this.transform.position, -this.transform.forward, out hit) && CheckforWidgets(hit.point))
+            {
+                hillWidge = Instantiate(landmark, hit.point + new Vector3(0, 0.01f, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
             }
         }
 
@@ -174,4 +210,3 @@ namespace OVRTouchSample
             points = new List<Vector3>();
         }
     }
-}

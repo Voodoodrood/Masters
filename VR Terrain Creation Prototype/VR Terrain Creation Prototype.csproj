@@ -224,6 +224,7 @@
   <ItemGroup>
     <Compile Include="Assets\CircularMenu.cs" />
     <Compile Include="Assets\HillWidget.cs" />
+    <Compile Include="Assets\Instructions.cs" />
     <Compile Include="Assets\OVR\Scripts\Composition\OVRCameraComposition.cs" />
     <Compile Include="Assets\OVR\Scripts\Composition\OVRComposition.cs" />
     <Compile Include="Assets\OVR\Scripts\Composition\OVRCompositionUtil.cs" />

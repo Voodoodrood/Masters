@@ -10,6 +10,7 @@ public class CircularMenu : MonoBehaviour {
     public int selectedItem;
     public Canvas myCanvas;
     private float timer;
+    public bool color;
 
     // Use this for initialization
     void Start () {
@@ -25,12 +26,19 @@ public class CircularMenu : MonoBehaviour {
 
         if (OVRInput.GetDown(OVRInput.Button.Three))
         {
-            if (myCanvas.enabled)
+            if (myCanvas.enabled && color)
                 myCanvas.enabled = false;
-            else
+            else if (color)
                 myCanvas.enabled = true;
         }
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && myCanvas.enabled)
+        if (OVRInput.GetDown(OVRInput.Button.Four))
+        {
+            if (myCanvas.enabled && !color)
+                myCanvas.enabled = false;
+            else if (!color)
+                myCanvas.enabled = true;
+        }
+        if ((OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && myCanvas.enabled)|| (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && myCanvas.enabled))
         {
             myCanvas.enabled = false;
         }
@@ -39,14 +47,19 @@ public class CircularMenu : MonoBehaviour {
 
     public void GetCurrentMenuItem()
     {
-        Vector2 stickPos = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+        Vector2 stickPos;
+        if (color)
+            stickPos = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+        else
+            stickPos = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+
         if (stickPos.x > 0.2 && (Time.time-timer) > 0.1)
         {
-            if (selectedItem <= 8)
+            if (selectedItem < (menuItems-1))
                 selectedItem++;
             else
                 selectedItem = 0;
-            myCanvas.transform.localRotation = Quaternion.Euler(myCanvas.transform.localRotation.eulerAngles + new Vector3(0,0,36));
+            myCanvas.transform.localRotation = Quaternion.Euler(myCanvas.transform.localRotation.eulerAngles + new Vector3(0,0,360/ menuItems));
             timer = Time.time;
         }
         else if (stickPos.x < -0.2 && (Time.time - timer) > 0.5)
@@ -54,8 +67,8 @@ public class CircularMenu : MonoBehaviour {
             if (selectedItem >= 1)
                 selectedItem--;
             else
-                selectedItem = 9;
-            myCanvas.transform.localRotation = Quaternion.Euler(myCanvas.transform.localRotation.eulerAngles - new Vector3(0, 0, 36));
+                selectedItem = (menuItems - 1);
+            myCanvas.transform.localRotation = Quaternion.Euler(myCanvas.transform.localRotation.eulerAngles - new Vector3(0, 0, 360 / menuItems));
             timer = Time.time;
         }
         foreach (MenuButton button in buttons)
@@ -63,36 +76,6 @@ public class CircularMenu : MonoBehaviour {
             button.sceneImage.rectTransform.localPosition = new Vector3(0, 0, 0);
         }
         buttons[selectedItem].sceneImage.rectTransform.localPosition = new Vector3(0, 0, -0.01f);
-        /*if (stickPos != new Vector2(0, 0))
-        {
-            //claculates the angle of the joystick
-            float angle = (Mathf.Atan2(fromVector2M.y - centercircle.y, fromVector2M.x - centercircle.x) - Mathf.Atan2(stickPos.y - centercircle.y, stickPos.x - centercircle.x)) * Mathf.Rad2Deg;
-
-            if (angle < 0)
-                angle += 360;
-            
-            curItem = (int)(angle / (360 / menuItems));
-            if (oldItem == -1)
-            {
-                foreach (MenuButton button in buttons)
-                {
-                    button.sceneImage.rectTransform.localPosition = new Vector3(0, 0, 0);
-                }
-            }
-            if (curItem != oldItem && (Mathf.Abs(stickPos.x)>0.2 || Mathf.Abs(stickPos.y) > 0.2))
-            {
-                selectedItem = curItem;
-                Debug.Log("X: " + stickPos.x + " Y: " + stickPos.y);
-                if (oldItem != -1)
-                    buttons[oldItem].sceneImage.rectTransform.localPosition = new Vector3(0,0,0);
-                oldItem = curItem;
-                buttons[curItem].sceneImage.rectTransform.localPosition = new Vector3(0, 0, -0.01f);
-            }
-        }
-        else
-        {
-                oldItem = -1;
-        }*/
     }
 }
 
@@ -101,6 +84,4 @@ public class MenuButton
 {
     public string name;
     public Image sceneImage;
-    public Color NormalColor = Color.red;
-    public Color SelectColor = Color.grey;
 }

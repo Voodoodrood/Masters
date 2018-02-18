@@ -6,12 +6,11 @@
 
 using UnityEngine;
 
-namespace OVRTouchSample
-{
+
     public class PainterGrab : OVRGrabbable
     {
 
-        private bool inLeftHand, inRightHand;
+        public bool inLeftHand, inRightHand;
         GameObject laserLine;
         RaycastHit hit;
         public TerrainData terrData;
@@ -71,7 +70,11 @@ namespace OVRTouchSample
             }
             playerBasePosition = playerBase.transform.position;
         }
-
+        public void resetPosition()
+        {
+            this.GetComponentInParent<Transform>().position = new Vector3(0.13f, -0.15f, 0.3f) + (playerBase.transform.position);
+            this.GetComponentInParent<Transform>().localRotation = Quaternion.Euler(-125,5,18);
+        }
         void DrawLaser(Vector3 start, Vector3 end, Color color, float duration = 0.02f)
         {
             laserLine = new GameObject();
@@ -154,4 +157,3 @@ namespace OVRTouchSample
             height = 3f;
         }
     }
-}
