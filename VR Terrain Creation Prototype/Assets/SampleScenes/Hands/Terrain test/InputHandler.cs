@@ -74,7 +74,8 @@ public class InputHandler : MonoBehaviour
             {
                 Debug.Log(i);
                 currentWidgets[i].transform.localPosition = new Vector3(initWidgets[i].x*(scale*2), (initWidgets[i].y)*(2*scale)+0.29f, initWidgets[i].z *(scale*2));
-                currentWidgets[i].GetComponentInParent<HillWidget>().SetPosition(false);
+                if(currentWidgets[i].GetComponentInParent<HillWidget>() != null)
+                    currentWidgets[i].GetComponentInParent<HillWidget>().SetPosition(false);
             }
             GameObject[] currentWidgetExtras = GameObject.FindGameObjectsWithTag("hillWidget");
             for (int i = 0; i < currentWidgetExtras.Length; i++)
